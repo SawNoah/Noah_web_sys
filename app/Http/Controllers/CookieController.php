@@ -22,11 +22,26 @@ class CookieController extends Controller
     }
 
     /**
+     * Return Cookies List API
+     * 
+     * @return JSON $cookies
+     */
+    public function get_cookies()
+    {
+        $cookies = Cookie::get();
+        return response()->json([
+            'message'   =>  'Cookie List',
+            'status'    =>  'success',
+            'cookies'   =>  $cookies
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +49,27 @@ class CookieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCookie = new Cookie;
+        $newCookie->title = $request->title;
+        $newCookie->description = $request->description;
+        $newCookie->save();
+        return redirect('/cookie');
+    }
+
+    /**
+     * Create Cookie API
+     */
+    public function create_cookie(Request $request)
+    {
+        $newCookie = new Cookie;
+        $newCookie->title = $request->title;
+        $newCookie->description = $request->description;
+        $newCookie->save();
+        return response()->json([
+            'message'   =>  'Cookie Create',
+            'status'    =>  'success',
+            'cookies'   =>  $newCookie
+        ]);
     }
 
     /**

@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/cookie/create',[CookieController::class, 'store']);
 Route::get('/cookie',[CookieController::class, 'index']);
