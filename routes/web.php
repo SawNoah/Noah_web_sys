@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CookieController;
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,6 @@ Route::get('/', function () {
 
 Route::post('/cookie/create',[CookieController::class, 'store']);
 Route::get('/cookie',[CookieController::class, 'index']);
+
+Route::post('/employee/create',[EmployeeController::class, 'store']);
+Route::get('/employee',[EmployeeController::class, 'index']);
