@@ -53,7 +53,7 @@ class EmployeeController extends Controller
         $newEmployee->email = $request->email;
         $newEmployee->position = $request->position;
         $newEmployee->salary = $request->salary;
-        $newEmployee->join_date = $request->join_date;
+        $newEmployee->joined_date = $request->joined_date;
         $newEmployee->save();
         return redirect('/employee');
     }
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
         $newEmployee->email = $request->email;
         $newEmployee->position = $request->position;
         $newEmployee->salary = $request->salary;
-        $newEmployee->join_date = $request->join_date;
+        $newEmployee->joined_date = $request->joined_date;
         $newEmployee->save();
         return response()->json([
             'message'   =>  'Employee Created',

@@ -15,11 +15,11 @@ use App\Http\Controllers\EmployeeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::post('/cookie/create',[CookieController::class, 'store']);
-Route::get('/cookie',[CookieController::class, 'index']);
+Route::post('/cookie/create', [CookieController::class, 'store']);
+Route::get('/cookie', [CookieController::class, 'index']);
 
-Route::post('/employee/create',[EmployeeController::class, 'store']);
-Route::get('/employee',[EmployeeController::class, 'index']);
+Route::post('/employee/create', [EmployeeController::class, 'store']);
+Route::get('/employee', [EmployeeController::class, 'index']);
