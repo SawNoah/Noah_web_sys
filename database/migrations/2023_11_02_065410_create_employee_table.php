@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->string('position');
-            $table->double('salary');
+            $table->integer('salary');
             $table->timestamp('joined_date');
             $table->timestamps();
         });

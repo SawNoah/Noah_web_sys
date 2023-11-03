@@ -60,7 +60,7 @@ class EmployeeController extends Controller
     /**
      * Create Cookie API
      */
-    public function create_cookie(Request $request)
+    public function create_employee(Request $request)
     {
         $newEmployee = new Employee;
         $newEmployee->first_name = $request->first_name;
