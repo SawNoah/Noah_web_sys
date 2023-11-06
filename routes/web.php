@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/create', function () {
+    return view('create');
+});
+
 Route::post('/cookie/create', [CookieController::class, 'store']);
 Route::get('/cookie', [CookieController::class, 'index']);
 
