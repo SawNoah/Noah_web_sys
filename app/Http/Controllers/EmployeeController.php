@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -73,7 +74,7 @@ class EmployeeController extends Controller
         return response()->json([
             'message'   =>  'Employee Created',
             'status'    =>  'success',
-            'cookies'   =>  $newEmployee
+            'employee'   =>  $newEmployee
         ]);
     }
 
@@ -104,8 +105,27 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Employee $employee)
+    public function destroy(Employee $id)
     {
-        //
+        $id->delete();
+        return redirect('/employee')->with('success', 'Employee deleted successfully');
+    }
+
+    public function delete_employee(Request $request)
+    {
+        $id = $request->id;
+
+        $employee = Employee::find($id);
+
+        if (!$employee) {
+            return response()->json(['message' => 'Employee not found.'], 404);
+        }
+
+        $employee->delete();
+
+        return response()->json([
+            'message' => 'Employee deleted successfully',
+            'deletedID' => $id
+        ], 200);
     }
 }

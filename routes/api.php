@@ -31,3 +31,4 @@ Route::get("/test-employee", function () {
 
 Route::get("/employee", [EmployeeController::class, 'get_employees']);
 Route::post("/employee", [EmployeeController::class, 'create_employee']);
+Route::delete("/employee/{id}", [EmployeeController::class, 'delete_employee']);
