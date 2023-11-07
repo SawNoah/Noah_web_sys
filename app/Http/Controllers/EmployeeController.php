@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -91,7 +90,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('edit', compact('employee'));
     }
 
     /**
@@ -99,8 +98,43 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $data = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'position' => 'required',
+            'salary' => 'required|numeric',
+            'joined_date' => 'required|date',
+        ]);
+
+        $employee->joined_date = \Carbon\Carbon::parse($request->input('joined_date'));
+        $employee->update($data);
+
+        return redirect('/employee')->with('success', 'Employee updated successfully');
     }
+
+    public function update_employee(Request $request, Employee $employee)
+    {
+        // Validate and update the employee's information
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'position' => 'required',
+            'salary' => 'required|numeric',
+            'joined_date' => 'required|date',
+        ]);
+
+        // Update the employee's data
+        $employee->update_employee($request->all());
+
+        // Return a response indicating success
+        return response()->json([
+            'message' => 'Employee information updated successfully',
+            'employee' => $employee,
+        ]);
+    }
+
 
     /**
      * Remove the specified resource from storage.

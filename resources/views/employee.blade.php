@@ -90,7 +90,7 @@
                             {{$employee->joined_date}}
                         </td>
                         <td class="px-4 py-4 text-center">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="{{ route('employee.edit', ['employee' => $employee]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         </td>
                         <td class="px-4 py-4 text-center">
                             <form action="/employee/{{ $employee->id }}" method="POST">
