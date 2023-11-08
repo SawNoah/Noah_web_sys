@@ -107,7 +107,9 @@ class EmployeeController extends Controller
             'joined_date' => 'required|date',
         ]);
 
+        // Parse the joined_date to 'Y-m-d' format
         $employee->joined_date = \Carbon\Carbon::parse($request->input('joined_date'));
+        // Update the employee's data using the update method
         $employee->update($data);
 
         return redirect('/employee')->with('success', 'Employee updated successfully');
@@ -124,9 +126,11 @@ class EmployeeController extends Controller
             'salary' => 'required|numeric',
             'joined_date' => 'required|date',
         ]);
+        // Parse the joined_date to 'Y-m-d' format
+        $employee->joined_date = \Carbon\Carbon::parse($request->input('joined_date'));
 
-        // Update the employee's data
-        $employee->update_employee($request->all());
+        // Update the employee's data using the update method
+        $employee->update($request->all());
 
         // Return a response indicating success
         return response()->json([
@@ -134,6 +138,7 @@ class EmployeeController extends Controller
             'employee' => $employee,
         ]);
     }
+
 
 
     /**
