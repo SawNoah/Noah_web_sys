@@ -29,6 +29,6 @@ Route::get('/cookie', [CookieController::class, 'index']);
 
 Route::get('/employee', [EmployeeController::class, 'index']);
 Route::post('/employee/create', [EmployeeController::class, 'store']);
-Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
+Route::delete('/employee/{employee}', [EmployeeController::class, 'destroy']);
 Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/{employee}', [EmployeeController::class, 'update'])->name('employee.update');

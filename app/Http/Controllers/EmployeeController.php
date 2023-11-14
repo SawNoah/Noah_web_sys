@@ -55,7 +55,7 @@ class EmployeeController extends Controller
         $newEmployee->salary = $request->salary;
         $newEmployee->joined_date = $request->joined_date;
         $newEmployee->save();
-        return redirect('/employee');
+        return redirect('/employee')->with('success', 'Employee added successfully');
     }
     /**
      * Create Cookie API
@@ -144,9 +144,9 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Employee $id)
+    public function destroy(Employee $employee)
     {
-        $id->delete();
+        $employee->delete();
         return redirect('/employee')->with('success', 'Employee deleted successfully');
     }
 
