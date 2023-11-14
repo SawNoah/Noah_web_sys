@@ -34,7 +34,11 @@
             </div>
         </div>
     </nav>
-    @yield('content')
+    <section>
+        <div class="relative isolate px-6 pt-14 lg:px-8">
+            @yield('content')
+        </div>
+    </section>
 </body>
 
 </html>

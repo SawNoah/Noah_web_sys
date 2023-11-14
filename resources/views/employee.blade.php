@@ -36,7 +36,7 @@
             </div>
         </div>
     </nav>
-
+    @section('content')
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 bg-white dark:bg-gray-900 ">
         <div class="container mx-auto relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -104,6 +104,7 @@
             </table>
         </div>
     </section>
+    @endsection
 </body>
 
 </html>
