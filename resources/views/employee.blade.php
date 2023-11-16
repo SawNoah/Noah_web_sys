@@ -36,7 +36,7 @@
             </div>
         </div>
     </nav>
-    @section('content')
+
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 bg-white dark:bg-gray-900 ">
         <div class="container mx-auto relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -46,6 +46,9 @@
                 </caption>
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Image
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Employee Name
                         </th>
@@ -73,6 +76,9 @@
                 <tbody>
                     @foreach($employees as $employee)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{ asset('storage/images/default_img.jpg') }}" alt="">
+                        </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{$employee->first_name}} {{$employee->last_name}}
                         </th>
@@ -102,9 +108,8 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $employees->links() }}
         </div>
-    </section>
-    @endsection
 </body>
 
 </html>

@@ -16,5 +16,6 @@ class Employee extends Model
         'position',
         'salary',
         'join_date',
+        'image'
     ];
 }

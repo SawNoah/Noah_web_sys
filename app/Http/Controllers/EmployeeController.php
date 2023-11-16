@@ -13,7 +13,7 @@ class EmployeeController extends Controller
     public function index()
     {
         // Get Employee List
-        $employees = Employee::get();
+        $employees = Employee::simplePaginate(6);
         // dd($employees);
         return view('employee', [
             'employees' => $employees
@@ -54,6 +54,13 @@ class EmployeeController extends Controller
         $newEmployee->position = $request->position;
         $newEmployee->salary = $request->salary;
         $newEmployee->joined_date = $request->joined_date;
+
+        //Handle image upload and save the image path
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $newEmployee->image = str_replace('public/', 'storage/', $imagePath);
+        }
+
         $newEmployee->save();
         return redirect('/employee')->with('success', 'Employee added successfully');
     }
@@ -69,6 +76,13 @@ class EmployeeController extends Controller
         $newEmployee->position = $request->position;
         $newEmployee->salary = $request->salary;
         $newEmployee->joined_date = $request->joined_date;
+
+        //Handle image upload and save the image path
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $newEmployee->image = str_replace('public/', 'storage/', $imagePath);
+        }
+
         $newEmployee->save();
         return response()->json([
             'message'   =>  'Employee Created',
