@@ -76,7 +76,7 @@ class EmployeeController extends Controller
 
         //Handle image upload and save the image path
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images');
+            $imagePath = $request->file('image')->storeAs('public/images', $request->file('image')->getClientOriginalName());
             $newEmployee->image = str_replace('public/', 'storage/', $imagePath);
         }
 
@@ -98,7 +98,7 @@ class EmployeeController extends Controller
 
         //Handle image upload and save the image path
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images');
+            $imagePath = $request->file('image')->storeAs('public/images', $request->file('image')->getClientOriginalName());
             $newEmployee->image = str_replace('public/', 'storage/', $imagePath);
         }
 
@@ -131,26 +131,10 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        $validator = Validator::make($request->all(), [
-            'image' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif,image/webp|max:2048',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'position' => 'required',
-            'salary' => 'required|numeric',
-            'joined_date' => 'required|date',
 
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('employee.edit', $employee)
-                ->with('error', 'Validation failed')
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         $data = $request->validate([
-
+            'image' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif,image/webp|max:2048',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
@@ -170,7 +154,7 @@ class EmployeeController extends Controller
                 Storage::delete(str_replace('storage/', 'public/', $employee->image));
             }
 
-            $imagePath = $request->file('image')->store('public/images');
+            $imagePath = $request->file('image')->storeAs('public/images', $request->file('image')->getClientOriginalName());
             $employee->image = str_replace('public/', 'storage/', $imagePath);
         }
 
