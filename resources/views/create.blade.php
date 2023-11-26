@@ -38,18 +38,14 @@
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 bg-white dark:bg-gray-900 ">
         <div class="container form mx-auto p-20 bg-white dark:bg-gray-800 sm:rounded-lg">
             <h1 class="text-gray dark:text-white mb-5">Create New Employee</h1>
-            @if(session('success'))
-            <div class="bg-green-200 p-4 rounded-md mb-4">
-                {{ session('success') }}
-            </div>
-            @endif
+
 
             @if(session('error'))
             <div class="bg-red-200 p-4 rounded-md mb-4">
                 {{ session('error') }}
             </div>
             @endif
-            <form action="employee/create" method="POST" enctype="multipart/form-data">
+            <form action="{{route('employee.create')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="relative z-0 w-full mb-6 group">
                     <input type="file" name="image" id="image" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">

@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/create', function () {
+Route::get('/employee/create', function () {
     return view('create');
-})->name('create.form');
+});
 
 
 

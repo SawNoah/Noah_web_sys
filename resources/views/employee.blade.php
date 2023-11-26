@@ -39,6 +39,11 @@
 
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 bg-white dark:bg-gray-900 ">
         <div class="container mx-auto relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+            @if(session('success'))
+            <div class="bg-green-200 p-4 rounded-md mb-4">
+                {{ session('success') }}
+            </div>
+            @endif
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                     Our Employee Members
@@ -65,7 +70,7 @@
                             Joined_Date
                         </th>
                         <th scope="col" class="px-6 py-3" colspan="2">
-                            <a href="/create">
+                            <a href="employee/create">
                                 <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Add Employee
                                 </button>
@@ -76,12 +81,12 @@
                 <tbody>
                     @foreach($employees as $employee)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{ asset($employee->image) }}" alt="">
-                        </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        </td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{$employee->first_name}} {{$employee->last_name}}
-                        </th>
+                        </td>
                         <td class="px-6 py-4">
                             {{$employee->email}}
                         </td>
