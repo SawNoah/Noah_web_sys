@@ -131,7 +131,22 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'position' => 'required',
+            'salary' => 'required|numeric',
+            'joined_date' => 'required|date',
+            'image' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif,image/webp|max:2048',
+        ]);
 
+        if ($validator->fails()) {
+            return redirect()->route('employee.edit', $employee)
+                ->with('error', 'Validation failed')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $data = $request->validate([
             'image' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif,image/webp|max:2048',
