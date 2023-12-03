@@ -115,7 +115,7 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table><br>
         {{ $employees->links() }}
     </div>
     </body>

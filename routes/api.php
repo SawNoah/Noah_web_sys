@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CookieController;
@@ -29,7 +30,15 @@ Route::get("/test-employee", function () {
     ]);
 });
 
-Route::get("/employee", [EmployeeController::class, 'get_employees']);
-Route::post("/employee", [EmployeeController::class, 'create_employee']);
-Route::delete("/employee/{employee}", [EmployeeController::class, 'delete_employee']);
-Route::put('/employee/{employee}', [EmployeeController::class, 'update_employee']);
+
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::group(['middleware' => 'jwt'], function () {
+    Route::get("/employee", [EmployeeController::class, 'get_employees']);
+    Route::post("/employee", [EmployeeController::class, 'create_employee']);
+    Route::delete("/employee/{employee}", [EmployeeController::class, 'delete_employee']);
+    Route::put('/employee/{employee}', [EmployeeController::class, 'update_employee']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
