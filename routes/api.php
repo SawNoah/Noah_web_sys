@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("/test_employees", [EmployeeController::class, 'get_employees']);
+Route::get("/employees_list", [EmployeeController::class, 'get_employees']);
 Route::post("/cookies", [CookieController::class, 'create_cookie']);
 
 Route::get("/test-employee", function () {
