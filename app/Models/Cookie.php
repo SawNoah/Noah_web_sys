@@ -12,4 +12,9 @@ class Cookie extends Model
         'title',
         'description'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(EmployeeCategory::class);
+    }
 }
